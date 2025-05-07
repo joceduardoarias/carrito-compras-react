@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CarritoContext } from '../context/CarritoContext'
 
 export const CarritoPage = () => {
+
+  const { listaCompras, agregarCompra, disminuirCantidad, aumentarCantidad, eliminarCompra } = useContext(CarritoContext)
+
   return (
     <>
       <table className="table">
@@ -13,12 +17,20 @@ export const CarritoPage = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>        
+          {
+            listaCompras.map(item => (
+              <tr key={item.id}>
+                <th scope="row">{item.title}</th>
+                <td>{item.price}</td>
+                <td>1</td>
+                <td><button
+                  type='button'
+                  className='btn btn-danger'
+                  onClick={eliminarCompra}></button></td>
+              </tr>
+            ))
+          }
+
         </tbody>
       </table>
       <div className='d-grid gap-2'>
