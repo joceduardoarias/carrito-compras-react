@@ -52,7 +52,7 @@ export const CarritoProvider = ({ children }) => {
         }
         dispatch(action)
     }
-    const eliminarCantidad = (id) => {
+    const eliminarCompra = (id) => {
         const action = {
             type: '[CARRITO] Eliminar compra',
             payload: id
@@ -61,7 +61,7 @@ export const CarritoProvider = ({ children }) => {
     }
 
     return (
-        <CarritoContext.Provider value={{listaCompras, agregarCompra, disminuirCantidad, aumentarCantidad, eliminarCantidad}}>
+        <CarritoContext.Provider value={{listaCompras, agregarCompra, disminuirCantidad, aumentarCantidad, eliminarCompra}}>
             {children}
         </CarritoContext.Provider>
     )
