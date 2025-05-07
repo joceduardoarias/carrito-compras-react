@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-
+import '../styles/card.css'
 export const Card = ({ imagen, titulo, descrpcion, precio }) => {
     
     const [added, setAdded] = useState(false)
@@ -12,7 +12,7 @@ export const Card = ({ imagen, titulo, descrpcion, precio }) => {
                 <h3 className='tarjeta-titulo'>{titulo}</h3>
                 <p className='tarjeta-descripcion'>{descrpcion}</p>
                 <p className='tarjeta-precio'>{precio}</p>
-            </div>
+            
             {added
                 ? <button
                     type='button'
@@ -22,11 +22,12 @@ export const Card = ({ imagen, titulo, descrpcion, precio }) => {
                 </button>
                 : <button
                     type='button'
-                    className='boton-quitar'
+                    className='boton-agregar'
                 >
                     Agregar al carrito
                 </button>
             }
+            </div>
         </div>
     )
 }
