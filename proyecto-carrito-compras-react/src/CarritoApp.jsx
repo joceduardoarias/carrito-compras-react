@@ -4,17 +4,20 @@ import { NavBar } from './components/NavBar'
 import { ComprasPage } from './pages/ComprasPage'
 import { CarritoPage } from './pages/CarritoPage'
 import { ProductosProvider } from './context/ProductosProvider'
+import { CarritoProvider } from './context/CarritoProvider'
 
 export const CarritoApp = () => {
     return (
         <>
             <ProductosProvider>
-                <NavBar></NavBar>
-                <Routes>
-                    <Route path='/' element={<ComprasPage />} />
-                    <Route path='/carrito' element={<CarritoPage />} />
-                    <Route path='/*' element={<NavLink to='/' />} />
-                </Routes>
+                <CarritoProvider>
+                    <NavBar></NavBar>
+                    <Routes>
+                        <Route path='/' element={<ComprasPage />} />
+                        <Route path='/carrito' element={<CarritoPage />} />
+                        <Route path='/*' element={<NavLink to='/' />} />
+                    </Routes>
+                </CarritoProvider>
             </ProductosProvider>
         </>
     )
