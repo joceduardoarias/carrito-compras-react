@@ -5,16 +5,16 @@ class productosController {
 
     async create (req, res) {
         try {
-            
+            res.status(201).json({status:'ok'});
         } catch (e) {
-            
+            res.status(500).send(e);
         }
     }
     async getAll (req, res) {
         try {
-            
+            res.status(201).json({status:'ok'});
         } catch (e) {
-            
+            res.status(500).send(e);
         }
     }
     async getById (req, res) {
