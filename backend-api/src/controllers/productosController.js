@@ -1,3 +1,5 @@
+import ProductoService from "../service/productoService.js";
+
 class productosController {
     constructor(){
 
@@ -5,16 +7,18 @@ class productosController {
 
     async create (req, res) {
         try {
-            res.status(201).json({status:'ok'});
+            await ProductoService.createProduct(req.body);
+            res.json({ message: 'Producto creado exitosamente.' });
         } catch (e) {
-            res.status(500).send(e);
+            res.status(400).json({ error: e.message });
         }
     }
     async getAll (req, res) {
         try {
-            res.status(201).json({status:'ok'});
+            const productos = await ProductoService.getAllProducts();
+            res.json(productos);
         } catch (e) {
-            res.status(500).send(e);
+            res.status(400).json({ error: e.message });
         }
     }
     async getById (req, res) {
