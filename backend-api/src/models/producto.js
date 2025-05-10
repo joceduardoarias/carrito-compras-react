@@ -1,4 +1,4 @@
-import mongoose from '../config/dbClient';
+import mongoose from '../config/dbClient.js';
 
 const productoSchema = new mongoose.Schema({
     title: {
@@ -17,24 +17,23 @@ const productoSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, {
-    collation: 'productos',
+}, {    
     timestamps: false
 });
 
-const Productos = mongoose.model('Productos', productoSchema);
+const Producto = mongoose.model('Producto', productoSchema);
 
 const create = async (data) => {
     try {
         const producto = new Productos(data);
         await producto.save();
         return producto;
-    } catch (err) {
+    } catch (err) {        
         throw err
     }
 }
 
-const getAll = async () => {
+const find = async () => {
     try {
         const producto = await Productos.find();
         return producto;
@@ -43,7 +42,7 @@ const getAll = async () => {
     }
 };
 
-const getById = async (id) => {
+const findById = async (id) => {
     try {
         const producto = await Productos.findById(id);
         return producto;
@@ -52,7 +51,7 @@ const getById = async (id) => {
     }
 };
 
-const update = async (id, data) => {
+const findByIdAndUpdate = async (id, data) => {
     try {
         const producto = await Productos.findByIdAndUpdate(id, data, { new: true });
         return producto;
@@ -61,7 +60,7 @@ const update = async (id, data) => {
     }
 };
 
-const remove = async (id) => {
+const findByIdAndDelete = async (id) => {
     try {
         const producto = await Productos.findByIdAndDelete(id);
         return producto;
@@ -70,4 +69,4 @@ const remove = async (id) => {
     }
 };
 
-export default Product;
+export default Producto;
