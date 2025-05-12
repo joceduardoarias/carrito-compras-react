@@ -6,13 +6,17 @@ const initialState = []
 
 const productosReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case '[PRODUCTOS] Agregar Producto':
+        case '[PRODUCTOS] Obtener productos':
+        case '[PRODUCTOS] Obtener productos':
+            console.log(action.type);
+            return [...action.payload];
+        case '[PRODUCTOS] Agregar producto':
             console.log(action.type)
             console.log(action.payload);
             return [...state, action.payload]
         case '[PRODUCTOS] Editar producto':
             console.log(action.type)
-            console.log(action.payload);           
+            console.log(action.payload);
             return state.map((producto) =>
                 producto.id === action.payload.id ? action.payload : producto
             );
@@ -33,19 +37,25 @@ export const ProductosProvider = ({ children }) => {
     const [productos, setProductos] = useState([])
 
     const fetchProductos = async () => {
-        const response = await fetch('https://fakestoreapi.com/products')
+        const response = await fetch('http://localhost:5100/api/productos')
         const data = await response.json()
-        setProductos(data)
-        console.log(data);
+        obtenerProductos(data)
     }
 
-    useEffect(() => {
-        fetchProductos()
+    // useEffect(() => {
+    //     fetchProductos()
 
-    }, [])
-    
+    // }, [])
+
     const [productosState, dispatch] = useReducer(productosReducer, initialState)
 
+    const obtenerProductos = (productosData) => {
+        const action = {
+            type: '[PRODUCTOS] Obtener productos',
+            payload: productosData
+        }
+        dispatch(action)
+    }
     const agregarProducto = (producto) => {
         const action = {
             type: '[PRODUCTOS] Agregar producto',
@@ -69,7 +79,7 @@ export const ProductosProvider = ({ children }) => {
     }
 
     return (
-        <ProductosContext.Provider value={{ productos, setProductos, agregarProducto, editarProducto, eliminarProducto, productosState }}>
+        <ProductosContext.Provider value={{ fetchProductos, productos, setProductos, agregarProducto, editarProducto, eliminarProducto, productosState }}>
             {children}
         </ProductosContext.Provider>
     )
