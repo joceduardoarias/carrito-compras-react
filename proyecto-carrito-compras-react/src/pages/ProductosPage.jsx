@@ -25,7 +25,7 @@ export const ProductosPage = () => {
     useEffect(() => {
         fetchProductos();        
     }, []);
-    console.log('productosState:', productosState); 
+    // console.log('productosState:', productosState); 
     return (
         <>  {
             verLista ?
