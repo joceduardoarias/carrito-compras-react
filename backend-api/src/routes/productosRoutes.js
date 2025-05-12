@@ -12,5 +12,6 @@ route.put('/api/producto/:id', productosController.update);
 route.delete('/api/producto/:id', productosController.delete);
 
 route.post('/api/login', UsuariosController.login);
+route.post('/api/register', UsuariosController.register);
 
 export default route;
