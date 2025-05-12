@@ -4,6 +4,7 @@ import { NavBar } from './components/NavBar'
 import { ProductosPage } from './pages/ProductosPage'
 import { ProductosProvider } from './context/ProductosProvider'
 import {EditarProductoPage} from './pages/EditarProductoPage'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const ProductosApp = () => {
     return (
