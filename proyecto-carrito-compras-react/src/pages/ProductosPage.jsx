@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Card } from '../components/Card'
 import { ProductosContext } from '../context/ProductosContext'
 import { EditarProductoPage } from './EditarProductoPage'
@@ -6,7 +6,7 @@ import { EditarProductoPage } from './EditarProductoPage'
 
 export const ProductosPage = () => {
 
-    const { productos, eliminarProducto } = useContext(ProductosContext)
+    const { fetchProductos, productos, eliminarProducto, productosState } = useContext(ProductosContext)
 
     const [verLista, setVerLista] = useState(true)
     const [producto, setProducto] = useState({})
@@ -21,16 +21,20 @@ export const ProductosPage = () => {
     const cancelarEdithandle = () =>{
         setVerLista(true)
     }
-    
+
+    useEffect(() => {
+        fetchProductos();        
+    }, []);
+    console.log('productosState:', productosState); 
     return (
         <>  {
             verLista ?
                 <div>
                     <h1>Productos: </h1>
                     <hr />
-                    {productos.map(producto => (
+                    {productosState.map(producto => (
                         <Card
-                            key={producto.id}
+                            key={producto._id}
                             imagen={producto.image}
                             titulo={producto.title}
                             descrpcion={producto.description}
