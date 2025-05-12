@@ -41,6 +41,8 @@ export const ProductosProvider = ({ children }) => {
     };
 
     const obtenerProductos = (productosData) => {
+        console.log(productosData);
+        
         const action = {
             type: '[PRODUCTOS] Obtener productos',
             payload: productosData
@@ -50,7 +52,9 @@ export const ProductosProvider = ({ children }) => {
 
     const agregarProducto = async (producto) => {
         try {
-            const response = await axios.post('http://localhost:5100/api/productos', producto);
+            console.log('Datos enviados:', producto);
+            
+            const response = await axios.post('http://localhost:5100/api/producto', producto);
             const action = {
                 type: '[PRODUCTOS] Agregar producto',
                 payload: response.data
