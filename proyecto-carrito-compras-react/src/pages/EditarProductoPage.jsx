@@ -5,7 +5,7 @@ import { ProductosContext } from '../context/ProductosContext';
 export const EditarProductoPage = ({ producto, cancelarhandle }) => {
     const { editarProducto, fetchProductos } = useContext(ProductosContext);
 
-    // Configurar useForm
+    
     const {
         register,
         handleSubmit,
