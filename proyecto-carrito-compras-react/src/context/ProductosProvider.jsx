@@ -79,7 +79,7 @@ export const ProductosProvider = ({ children }) => {
 
     const eliminarProducto = async (id) => {
         try {
-            await axios.delete(`http://localhost:5100/api/productos/${id}`); 
+            await axios.delete(`http://localhost:5100/api/producto/${id}`); 
             const action = {
                 type: '[PRODUCTOS] Eliminar producto',
                 payload: id
