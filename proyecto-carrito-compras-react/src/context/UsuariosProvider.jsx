@@ -7,7 +7,7 @@ export const UsuariosContext = createContext();
 export const UsuariosProvider = ({ children }) => {
     const [usuario, setUsuario] = useState(null); 
     const [error, setError] = useState(null); 
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     
     const registrarUsuario = async (datos) => {
         try {
@@ -26,8 +26,9 @@ export const UsuariosProvider = ({ children }) => {
             console.log(credenciales);
             
             const response = await axios.post('http://localhost:5100/api/login', credenciales);
-            console.log(response.data);
-            setUsuario(response.data); 
+            console.log(response.data.usuario);
+            setUsuario(response.data.usuario); 
+            setIsLoggedIn(true);
             setError(null); 
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
@@ -48,6 +49,7 @@ export const UsuariosProvider = ({ children }) => {
                 registrarUsuario,
                 loginUsuario,
                 logoutUsuario,
+                isLoggedIn
             }}
         >
             {children}
