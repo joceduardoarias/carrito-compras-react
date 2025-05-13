@@ -4,10 +4,11 @@ import { ProductosContext } from '../context/ProductosContext';
 import { EditarProductoPage } from './EditarProductoPage';
 import { AgregarProducto } from './AgregarProducto';
 import { Modal, Button } from 'react-bootstrap';
+import { UsuariosContext } from '../context/UsuariosProvider';
 
 export const ProductosPage = () => {
     const { fetchProductos, eliminarProducto, productosState } = useContext(ProductosContext);
-
+    const {usuario} = useContext(UsuariosContext)    
     const [verLista, setVerLista] = useState(true);
     const [producto, setProducto] = useState({});
     const [agregarProducto, setAgregarProducto] = useState(false);
@@ -47,6 +48,7 @@ export const ProductosPage = () => {
 
     useEffect(() => {
         fetchProductos();
+        console.log(usuario)
     }, []);
 
     return (
@@ -54,9 +56,11 @@ export const ProductosPage = () => {
             {verLista ? (
                 <div>
                     <h1>Productos: </h1>
-                    <button className="btn btn-success mb-3" onClick={agregarHandle}>
+                   {usuario.role == 'admin' ?  <button className="btn btn-success mb-3" onClick={agregarHandle}>
                         Agregar Producto
                     </button>
+                    : <></>
+                    }
                     <hr />
                     {productosState.map((producto) => (
                         <Card
