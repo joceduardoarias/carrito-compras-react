@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { UsuariosContext } from '../context/UsuariosProvider'; 
+import React, { useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import { UsuariosContext } from '../context/UsuariosProvider'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
-    const { loginUsuario, error } = useContext(UsuariosContext); 
-
+    const { loginUsuario, error } = useContext(UsuariosContext) 
+    const navigate = useNavigate()
+    
     const {
         register,
         handleSubmit,
@@ -14,6 +16,7 @@ export const LoginPage = () => {
     const onSubmit = async (data) => {
         try {
             await loginUsuario(data); 
+            navigate('/')
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
