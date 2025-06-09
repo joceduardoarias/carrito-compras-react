@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styles/card.css'
 
 export const Card = ({ imagen, titulo, descrpcion, precio, editarHandle, eliminarHandle }) => {
     
