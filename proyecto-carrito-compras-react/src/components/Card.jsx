@@ -11,29 +11,39 @@ export const Card = ({ imagen, titulo, descrpcion, precio, editarHandle, elimina
         eliminarHandle()        
     }
     return (
-        <div className='tarjeta'>
-            <img src={imagen} alt={titulo} className='tarjeta-imagen' />
-            <div className='tarjeta-contenido'>
-                <h3 className='tarjeta-titulo'>{titulo}</h3>
-                <p className='tarjeta-descripcion'>{descrpcion}</p>
-                <p className='tarjeta-precio'>{precio}</p>
-            
-            
-                <button
-                    type='button'
-                    className='boton-quitar'
-                    onClick={eliminarClick}
-                >
-                    Eliminar
-                </button>
-                <button
-                    type='button'
-                    className='boton-agregar'
-                    onClick={editarClick}
-                >
-                    Editar
-                </button>
-            
+         <div className="card mb-3 shadow-sm">
+            <div className="row g-0 align-items-center">
+                <div className="col-md-3">
+                    <img 
+                        src={imagen} 
+                        alt={titulo} 
+                        className="img-fluid rounded-start" 
+                        style={{ objectFit: 'cover', height: '100%', maxHeight: '150px', width: '100%' }}
+                    />
+                </div>
+                <div className="col-md-9">
+                    <div className="card-body d-flex flex-column h-100">
+                        <h5 className="card-title">{titulo}</h5>
+                        <p className="card-text">{descrpcion}</p>
+                        <p className="card-text fw-bold">${precio}</p>
+                        <div className="mt-auto d-flex gap-2">
+                            <button
+                                type="button"
+                                className="btn btn-outline-danger btn-sm"
+                                onClick={eliminarHandle}
+                            >
+                                Eliminar
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-success btn-sm"
+                                onClick={editarHandle}
+                            >
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
